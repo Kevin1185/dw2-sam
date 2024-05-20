@@ -1,17 +1,22 @@
+# Gebruik de Ubuntu 20.04 basisimage
+FROM ubuntu:20.04
 
-# Gebruik een basisimage met een webserver, bijvoorbeeld nginx
-FROM nginx:alpine
+# Update de pakketlijst en installeer nginx en date command (standaard aanwezig op Ubuntu)
+RUN apt update
 
 # Maak een directory aan voor de buildtime.txt
-RUN mkdir -p /usr/share/nginx/html
+RUN mkdir -p /var/www/html
 
 # Voeg een buildtime.txt bestand toe met de huidige datum en tijd
-RUN date > /usr/share/nginx/html/buildtime.txt
+RUN date > /var/www/html/buildtime.txt
+
 
 # Expose poort 81
 EXPOSE 81
 
-# Start nginx en luister op poort 81
-CMD ["nginx", "-g", "daemon off;"]
+
+# Start apache2 in de voorgrond
+CMD ["apachectl", "-D", "FOREGROUND"]
+
 
 

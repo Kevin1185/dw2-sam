@@ -1,4 +1,3 @@
-ECHO is off.
 
 
 docker stop my-webserver-container

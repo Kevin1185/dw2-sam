@@ -1,4 +1,3 @@
-ECHO off
 
 docker build -t my-webserver .
 
